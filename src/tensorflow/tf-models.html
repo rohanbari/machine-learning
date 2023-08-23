@@ -1,0 +1,71 @@
+<!-- Warning: Broken! -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+        <title>TensorFlow Models</title>
+        <style>
+            div {
+                font-family: "Courier New", Courier, monospace;
+                line-height: 150%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>TensorFlow.js Models</h1>
+        <p id="message">Model is being trained, wait.</p>
+
+        <div id="graph"></div>
+    </body>
+    <script>
+        // Adding sample data
+        const arrayX = tf.tensor([0, 1, 2, 3, 4]);
+        const arrayY = arrayX.mul(1.2).add(5);
+
+        // Creating a model
+        const model = tf.sequential();
+
+        // Adding layers
+        model.add(tf.layers.dense({ units: 1, inputShape: [1] }));
+
+        // Compiling the model
+        model.compile({ loss: "meanSquaredError", optimizer: "sgd" });
+
+        // Training the model
+        model.fit(arrayX, arrayY, { epochs: 500 }).then(() => {
+            useModel();
+        });
+
+        function useModel() {
+            const arrX = [];
+            const arrY = [];
+
+            for (let x = 0; x <= 10; x++) {
+                let result = model.predict(tf.tensor([Number(x)]));
+                result.data().then((y) => {
+                    arrX.push(x);
+                    arrY.push(Number(y));
+                    if (x == 10) {
+                        display(arrX, arrY);
+                    }
+                });
+            }
+            document.getElementById("message").style.display = "none";
+        }
+
+        function display(arrX, arrY) {
+            const data = [
+                { x: arrX, y: arrY, mode: "markers", type: "scatter" },
+            ];
+            const layout = {
+                xaxis: { range: [0, 10] },
+                yaxis: { range: [0, 20] },
+            };
+            Plotly.newPlot("graph", data, layout);
+        }
+    </script>
+    <noscript> Please enable JavaScript in your browser. </noscript>
+</html>
