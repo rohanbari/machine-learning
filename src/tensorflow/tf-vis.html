@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
+        <title>TensorFlow Visor</title>
+    </head>
+    <body>
+        <h1>TensorFlow.js Visor</h1>
+
+        <h3>tfvis.render.linechart</h3>
+        <div id="graph1"></div>
+        <h3>tfvis.render.scatterplot</h3>
+        <div id="graph2"></div>
+        <div id="graph3"></div>
+    </body>
+    <script>
+        const graph1 = document.getElementById("graph1");
+        const graph2 = document.getElementById("graph2");
+        const graph3 = document.getElementById("graph3");
+
+        const series = ["X-Axis", "Y-Axis"];
+
+        const series1 = [];
+        const series2 = [];
+
+        for (let i = 0; i < 50; i++) {
+            series1[i] = { x: i, y: Math.random() * 100 };
+            series2[i] = { x: i, y: Math.random() * 100 };
+        }
+
+        const data = { values: [series1, series2], series };
+
+        tfvis.render.linechart(graph1, data);
+        tfvis.render.scatterplot(graph2, data);
+    </script>
+    <noscript> Please enable JavaScript in your browser. </noscript>
+</html>
