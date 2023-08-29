@@ -5,8 +5,10 @@
 Machine Learning is a subfield of Artificial Intelligence.
 
 $$
+\begin{gathered}
 \text{data} + \text{algorithms} = \text{results} \\
 \text{data} + \text{results} = \text{algorithms}
+\end{gathered}
 $$
 
 ### Neural Networks
