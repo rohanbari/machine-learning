@@ -5,7 +5,7 @@ Feel free to make any relevant changes to my code.
 
 ## Coding Environment
 
--   **System.** Linux Mint 21.1 Vera
+-   **System.** Windows 10 22H2
 -   **IDE/Editor.** Visual Studio Code
 -   **Browser.** Google Chrome 115.0+
 
